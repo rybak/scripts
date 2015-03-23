@@ -1,0 +1,24 @@
+#!/bin/bash
+
+DIR=/home/andrey/tmp/touchpad-res
+mkdir -p $DIR
+
+RETRES=$DIR/return.res
+ERRRES=$DIR/error.res
+LISTRES=$DIR/list.res
+ECHORES=$DIR/echo.res
+
+rm -f $DIR/*
+i=0
+date >> "$DIR/start"
+while [ $i -lt 10 ];
+do
+    synclient TapButton2=2 TapButton3=3 > $RETRES 2> $ERRRES
+    synclient | grep TapButton > $LISTRES
+    sleep 20s
+    synclient | grep TapButton > "$LISTRES-2"
+    date >> $DIR/list-dif
+    diff $LISTRES $LISTRES-2 >> $DIR/list-dif
+    let i=i+1
+    echo $i >> $DIR/i
+done

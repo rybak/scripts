@@ -1,0 +1,13 @@
+#!/bin/bash
+
+function ll() {
+    ls -AlhF
+}
+
+ll
+find . -type d -exec chmod 700 '{}' \;
+find . -type f -exec chmod 600 '{}' \;
+echo -e "
+===============================================================================
+"
+ll

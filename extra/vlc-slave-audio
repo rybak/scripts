@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [[ $# -eq 2 ]]
+then
+    VID=$1
+    AUD=$2
+else
+    VID='(avi|mp4)'
+    AUD='(ac3|m4a)'
+fi
+
+VIDEO=$(ls -1 | grep -E "$VID")
+AUDIO=$(ls -1 | grep -E "$AUD")
+
+echo "video = $VIDEO"
+echo "audio = $AUDIO"
+
+vlc "$VIDEO" --input-slave "$AUDIO"
+

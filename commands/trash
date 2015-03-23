@@ -1,0 +1,18 @@
+#!/bin/bash
+
+TRASHDIR=$HOME/tmp/trash
+
+if [ -e "$1" ]; then
+    echo "deleting file : $1"
+else
+    echo "file not found : $1"
+    exit
+fi
+d=$(date +'%Y%m%d')
+t=$(date +'%H:%M:%S.%N')
+echo $d
+mkdir -p "$TRASHDIR/$d"
+
+newf="$TRASHDIR/$d/$t-$1"
+mv "$1" "$newf"
+echo "$newf"

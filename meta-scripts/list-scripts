@@ -1,0 +1,12 @@
+#!/bin/bash
+
+print0='-print0'
+# Human readable if there is at least one argument
+if [[ $# -gt 0 ]]; then
+    print0='-print'
+fi
+
+find "$HOME/scripts" -type f \
+    \! -name "*~" \! -name "*un~" \! -iname "*.png" \! -iname "*.md" \ 
+    \! -path "*\.hg*" \! -path "*\.git*" \
+    -and "$print0"

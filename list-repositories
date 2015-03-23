@@ -1,0 +1,88 @@
+#!/bin/bash
+
+set -u
+set -e
+
+echo 'Repositories listing script. Lists git and mercurial repositories.'
+
+declare -A VCS_CMDS=(['git']='git' ['mercurial']='hg')
+declare -A VCS_DIRS=(['git']='\.git' ['mercurial']='\.hg')
+
+LIST_FILE=/tmp/repositories.res
+DIFF_DIR=/tmp/rep-diffs
+HASDIFF="${DIFF_DIR}/YES"
+NODIFF="${DIFF_DIR}/NO"
+mkdir --parents "${DIFF_DIR}"
+touch "${HASDIFF}"
+touch "${NODIFF}"
+
+if find ${HOME} -type d \
+    -name ${VCS_DIRS['git']} \
+    -o -name ${VCS_DIRS['mercurial']} 2> /dev/null > "${LIST_FILE}"
+then
+    echo "$? find"
+fi
+
+mkdir -p "${DIFF_DIR}"
+rm -f "${DIFF_DIR}/*"
+
+function analyse_vcs() {
+    local -r vcs_dir="${VCS_DIRS[$1]}"
+    local -r vcs_cmd="${VCS_CMDS[$1]}"
+    grep "${vcs_dir}" "${LIST_FILE}" | {
+        while read rep_dir_internal; do
+            rep_dir=$(dirname "${rep_dir_internal}")
+            echo "working on '${rep_dir}'"
+            pushd "${rep_dir}"
+            rep_name="$(basename "${rep_dir}")"
+            rep_diff="${DIFF_DIR}/${rep_name}"
+            "${vcs_cmd}" diff > "${rep_diff}"
+            if [[ -s "${rep_diff}" ]]; then
+                # ^^ -s means "True if file exists and has a size greater than zero."
+                echo "${rep_dir_internal}" >> "${HASDIFF}"
+            else
+                rm "${rep_diff}"
+                echo "${rep_dir_internal}" >> "${NODIFF}"
+            fi
+            popd
+        done
+    }
+}
+analyse_vcs mercurial
+analyse_vcs git
+
+if [[ -s "${NODIFF}" ]]; then
+    echo 'No diffs in:'
+    cat "${NODIFF}"
+fi
+
+if [[ -s "${HASDIFF}" ]]; then
+    echo '-------------------'
+    echo 'There are diffs in:'
+    cat "${HASDIFF}"
+fi
+
+function check_diffs() {
+    local -r vcs_dir="${VCS_DIRS[$1]}"
+    local -r vcs_cmd="${VCS_CMDS[$1]}"
+    grep "${vcs_dir}" "${HASDIFF}" | {
+        while read rep_dir; do
+            echo "${rep_dir}"
+            pushd "$(dirname "${rep_dir}")"
+            (echo "${rep_dir}"; "${vcs_cmd}" diff) | less
+            popd
+        done
+    }
+}
+
+if [[ "$#" -gt 0 ]]; then
+    if [[ "$1" = 'diffs' ]]; then
+        shift
+        check_diffs mercurial check_diffs git
+    fi
+fi
+
+echo 'Removing temporary files.'
+rm "${HASDIFF}"
+rm "${NODIFF}"
+

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# command for uploading files onto "rain" server
+
+# -4 — forces to use IPv4
+scp -4 "$@" rybak@rain.ifmo.ru:~/public_html/testo/

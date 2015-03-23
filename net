@@ -1,0 +1,98 @@
+#!/bin/bash
+
+# PPPoE and LAN control
+
+set -u
+set -e
+
+function usage
+{
+    echo -e "
+Usage: net.sh [restart | up | down | eth0]
+    restart : restart pppoe
+    up      : start pppoe
+    down : stop pppoe
+    eth0 : restart connection to LAN
+"
+}
+
+PROV=dsl-provider
+function up
+{
+    pon $PROV
+}
+
+function down
+{
+    sudo poff -a
+}
+
+function one_check
+{
+    route -n
+}
+
+function check
+{
+    watch -g -d -n 3 route -n
+    one_check
+}
+
+function restart_eth
+{
+    sudo ifdown eth0
+    one_check
+    sudo ifup eth0
+    one_check
+}
+
+if [ $# -gt 0 ]; then
+    case "$1" in
+    "restart" )
+        if ! "$0" down
+        then
+            echo "r-net down error"
+        fi
+        sleep 5s
+        reset
+        r-net up
+        ;;
+    "up" )
+        up
+        sleep 3s
+        one_check
+        ;;
+    "down" )
+        down
+        sleep 1s
+        one_check
+        ;;
+    "eth0" )
+        restart_eth
+        ;;
+    "check" )
+        one_check
+        ;;
+    "watch" )
+        check
+        ;;
+    "aw" ) # resetting eth0 and pppoe
+        down
+        sleep 5s
+        one_check
+        sleep 1s
+        restart_eth
+        one_check
+        sleep 5s
+        up
+        check
+        ;;
+     * )
+        usage
+        one_check
+        ;;
+    esac
+else
+    exec "$0" up
+fi
+

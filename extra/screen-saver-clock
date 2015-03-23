@@ -1,0 +1,2 @@
+#!/bin/sh
+{ while true; do echo r; sleep 1s; echo r; sleep 1m; done } | tty-clock -c -C 5

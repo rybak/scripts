@@ -1,0 +1,6 @@
+#!/bin/bash
+
+CONFIG=$HOME/.config/voicerc
+source "$CONFIG"
+
+$ESPEAK "$(date +"Current time is %H hours and %_M minutes")"

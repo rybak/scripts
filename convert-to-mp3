@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -u
+set -e
+
+DRY=false
+if [[ $# -gt 0 ]]; then
+  if [[ $1 = '--dry' ]]; then
+    DRY=true
+    shift
+  fi
+fi
+
+for i in "$@" ; do
+  name="${i%.*}"
+  newname="${name// /_}.mp3"
+  name="${name}.${EXT}"
+  if ${DRY} ; then
+    echo "Pretending to convert ${name} -> ${newname}"
+  else
+    avconv -i "${name}" "${newname}"
+  fi
+done

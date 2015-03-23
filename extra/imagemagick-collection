@@ -1,0 +1,17 @@
+identify rot.pdf
+identify scan.png
+
+eog scan.png 
+
+convert orig.pdf scan.png
+
+convert -rotate 180 scan.png rot.png
+
+convert -crop +0+421 rot.png crop.png
+
+convert -density 300x300 orig.pdf -rotate90 rot.pdf
+convert -density 300x300 orig.pdf -rotate 90 rot.pdf
+convert -density 300x300 orig.pdf -rotate 180 rot.pdf
+convert -density 300x300 rot.pdf scan300.png
+convert -density 300x300 rot.pdf -crop +0+421 crop.pdf
+convert -density 300x300 crop.pdf scan.png

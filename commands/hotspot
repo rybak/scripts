@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rfkill unblock wifi
+screen -S hotspot sudo ~/scripts/connect/initSoftAP wlan0 ppp0
+

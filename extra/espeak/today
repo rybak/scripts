@@ -1,0 +1,29 @@
+#!/bin/bash
+
+CONFIG=$HOME/.config/voicerc
+source "$CONFIG"
+
+DAY=$(date +%-d)
+
+if [[ ${DAY} -gt 20 ]]; then
+  while [[ ${DAY} -gt 10 ]]; do
+    let DAY=DAY-1
+  done
+fi
+
+case "$DAY" in
+  '1' )
+    SUFFIX='st'
+    ;;
+  '2' )
+    SUFFIX='nd'
+    ;;
+  '3' )
+    SUFFIX='rd'
+    ;;
+  * )
+    SUFFIX='th'
+    ;;
+esac
+
+${ESPEAK} "$(date +"Today is %B the %_d${SUFFIX}, %A. Current time is %R")"

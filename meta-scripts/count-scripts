@@ -1,0 +1,5 @@
+#!/bin/bash
+
+DIR=$(dirname $0)
+
+"$DIR/list-scripts" | wc --files0-from=- # read files from stdin (pipe)

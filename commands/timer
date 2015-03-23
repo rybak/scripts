@@ -1,0 +1,21 @@
+#!/bin/bash
+
+function usage {
+    echo "Usage"
+    echo "$0 HOURS [MINUTES [SECONDS]]"
+    echo -e "\tTime should be specified using syntax of sleep command."
+    echo ""
+}
+
+if [ $# -lt 1 ]; then
+    usage
+    exit
+fi
+
+date -Iminutes
+sleep "$@"
+
+MUSIC="/media/DATA/MUSIC/"
+
+vlc -Z "$MUSIC"
+

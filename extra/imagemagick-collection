@@ -15,3 +15,4 @@ convert -density 300x300 orig.pdf -rotate 180 rot.pdf
 convert -density 300x300 rot.pdf scan300.png
 convert -density 300x300 rot.pdf -crop +0+421 crop.pdf
 convert -density 300x300 crop.pdf scan.png
+ 3972  convert -quality 100 SpinTutorial.pdf  +repage -crop 1x2@  +repage t17.pdf

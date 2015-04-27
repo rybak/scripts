@@ -7,6 +7,6 @@ if [[ $# -gt 0 ]]; then
 fi
 
 find "$HOME/scripts" -type f \
-    \! -name "*~" \! -name "*un~" \! -iname "*.png" \! -iname "*.md" \ 
+    \! -name "*~" \! -name "*un~" \! -iname "*.png" \! -iname "*.md" \
     \! -path "*\.hg*" \! -path "*\.git*" \
     -and "$print0"

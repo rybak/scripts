@@ -78,7 +78,8 @@ function check_diffs() {
 if [[ "$#" -gt 0 ]]; then
     if [[ "$1" = 'diffs' ]]; then
         shift
-        check_diffs mercurial check_diffs git
+        check_diffs mercurial
+        check_diffs git
     fi
 fi
 

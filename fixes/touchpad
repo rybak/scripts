@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=/home/andrey/tmp/touchpad-res
+DIR=$HOME/tmp/touchpad-res
 mkdir -p $DIR
 
 RETRES=$DIR/return.res

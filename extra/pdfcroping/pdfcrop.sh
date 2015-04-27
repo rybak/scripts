@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function usage () {
-  echo "Usage: `basename $0` [Options] <input.pdf> [<output.pdf>]"
+  echo "Usage: $(basename "$0") [Options] <input.pdf> [<output.pdf>]"
   echo
   echo " * Removes white margins from each page in the file. (Default operation)"
   echo " * Trims page edges by given amounts. (Alternative operation)"
@@ -62,9 +62,9 @@ do
 done
 shift $((OPTIND-1))
 
-[[ -z "$1" ]] && echo "`basename $0`: missing filename" 1>&2 && usage 1>&2 && exit 1
-input=$1;output=$1;shift;
-[[ -n "$1" ]] && output=$1 && shift;
+[[ -z "$1" ]] && echo "$(basename "$0"): missing filename" 1>&2 && usage 1>&2 && exit 1
+input="$1";output="$1";shift;
+[[ -n "$1" ]] && output="$1" && shift;
 
 (
     [[ "$c" -eq 0 ]] && gs -dNOPAUSE -q -dBATCH -sDEVICE=bbox "$input" 2>&1 | grep "%%$bbtype"
@@ -87,3 +87,4 @@ input=$1;output=$1;shift;
   }
   print;
 ' -- -mar="${mar[*]}" -tri="${tri[*]}" -c=$c | pdftk - output "$output" compress
+

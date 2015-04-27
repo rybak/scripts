@@ -59,7 +59,7 @@ if [ $# -gt 0 ]; then
         ;;
     "up" )
         up
-        sleep 3s
+        sleep 5s
         one_check
         ;;
     "down" )

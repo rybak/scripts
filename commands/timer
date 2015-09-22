@@ -7,15 +7,39 @@ function usage {
     echo ""
 }
 
+function create_list {
+    find "${MUSIC}" -type f > "${LIST}"
+}
+function sound_alarm {
+    echo "Playing sound alarm!"
+    vlc & disown
+    #mplayer -msglevel all=-1 -shuffle -volume 75 -playlist "${LIST}"
+    mplayer -volume 75 -loop 0 "$HOME/music/girl-talk.mp3"
+}
+
 if [ $# -lt 1 ]; then
     usage
     exit
 fi
 
+MUSIC="/media/DATA/MUSIC/"
+LIST="${HOME}/tmp/timer-music-list"
+
+if [[ ! -r "${LIST}" ]]; then
+    create_list
+fi
+
+LIST_DATE="$(stat --format="%Y" ${LIST})"
+CUR_DATE="$(date +"%s")"
+let DIF=${CUR_DATE}-${LIST_DATE}
+
+WEEK_IN_SECONDS=604800
+if [[ ${DIF} -gt ${WEEK_IN_SECONDS} ]]; then
+    create_list
+fi
+
+echo -n "Started : "
 date -Iminutes
 sleep "$@"
-
-MUSIC="/media/DATA/MUSIC/"
-
-vlc -Z "$MUSIC"
+sound_alarm
 

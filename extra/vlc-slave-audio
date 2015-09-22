@@ -1,19 +1,19 @@
 #!/bin/bash
 
-if [[ $# -eq 2 ]]
+set -e
+set -u
+if [[ $# -eq 1 ]]
 then
-    VID=$1
-    AUD=$2
-else
-    VID='(avi|mp4)'
-    AUD='(ac3|m4a)'
+    cd *"$1"*
+    pwd
+    ls --classify --color=always
 fi
 
-VIDEO=$(ls -1 | grep -E "$VID")
-AUDIO=$(ls -1 | grep -E "$AUD")
+VIDEO="$(find . -iname '*avi' -o -iname '*mp4')"
+AUDIO="$(find . -iname '*ac3' -o -iname '*m4a' -o -iname '*mp3')"
 
 echo "video = $VIDEO"
 echo "audio = $AUDIO"
 
-vlc "$VIDEO" --input-slave "$AUDIO"
+vlc "$VIDEO" --input-slave "$AUDIO" --audio-track=1 --fullscreen --deinterlace=1
 

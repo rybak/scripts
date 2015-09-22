@@ -1,5 +1,25 @@
-#!/bin/sh
+#!/bin/bash
 
-rfkill unblock wifi
-screen -S hotspot sudo ~/scripts/connect/initSoftAP wlan0 ppp0
+# TODO add command `check`
+#   - turn 'if' into 'case-esac'
+
+source "${HOME}/scripts/lib/wifi.sh"
+
+if [[ $# -eq 1 ]]
+then
+    if [[ "$1" == "off" ]]
+    then
+        screen -d -r "${HOTSPOT_SCREEN_NAME}"
+    fi
+fi
+
+if is_wifi_on
+then
+    echo -n "Sorry, "
+    print_wifi_state "already "
+else
+    rfkill unblock wifi
+    screen -S "${HOTSPOT_SCREEN_NAME}" sudo ~/scripts/net/initSoftAP wlan0 ppp0
+fi
+
 

@@ -35,8 +35,10 @@ function print_time {
 
 print_time 'started'
 echo "Downloading to the folder '$PWD'"
-if ! youtube-dl --continue --ignore-errors --no-overwrites \
-        --output '%(uploader_id)s/%(upload_date)s_%(title)s.%(ext)s' "$@";
+if ! youtube-dl --restrict-filenames \
+    --continue --ignore-errors --no-overwrites \
+    --output '%(uploader_id)s/%(upload_date)s_%(title)s.%(ext)s' \
+    "$@"
 then
     my_notify critical "Error during download."
     print_time 'of the error'

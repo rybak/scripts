@@ -17,11 +17,11 @@ function play_sound_ok {
 }
 
 function play_sound_success {
-    play_sound "$COMPLETE_SOUND" '50'
+    play_sound "$COMPLETE_SOUND" '70'
 }
 
 function play_sound_error {
-    play_sound "$ERROR_SOUND" '50'
+    play_sound "$ERROR_SOUND" '70'
 }
 
 function play_sound_bing {

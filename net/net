@@ -16,10 +16,10 @@ Usage: net.sh [restart | up | down | eth0]
 "
 }
 
-PROV=dsl-provider
+PROV='dsl-provider'
 function up
 {
-    pon $PROV
+    pon "${PROV}"
 }
 
 function down
@@ -93,6 +93,7 @@ if [ $# -gt 0 ]; then
         ;;
     esac
 else
+    # TODO add automatic check if pppoe is up
     up
 fi
 

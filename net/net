@@ -24,7 +24,10 @@ function up
 
 function down
 {
-    sudo poff -a
+    if ! sudo poff -a
+    then
+        echo "poff error"
+    fi
 }
 
 function one_check
@@ -49,13 +52,10 @@ function restart_eth
 if [ $# -gt 0 ]; then
     case "$1" in
     "restart" )
-        if ! "$0" down
-        then
-            echo "r-net down error"
-        fi
+        down
         sleep 5s
         reset
-        r-net up
+        up
         ;;
     "up" )
         up
@@ -93,6 +93,6 @@ if [ $# -gt 0 ]; then
         ;;
     esac
 else
-    exec "$0" up
+    up
 fi
 

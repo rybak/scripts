@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ $# -gt 0 ]]
+then
+    filename="$1"
+else
+    filename=README.md
+fi
+
+if [[ -r "$filename" ]] # file exists and is readable
+then
+    less $filename
+else
+    echo "Error: no file '$filename'."
+fi

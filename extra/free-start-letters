@@ -1,0 +1,3 @@
+#!/bin/bash
+
+diff <(ls -1 | grep ^[a-z] -o | uniq) <(for i in {a..z}; do echo $i; done) | grep  '>'  | grep -o [a-z]

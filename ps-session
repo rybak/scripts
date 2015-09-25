@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# session in here is "gnome-session" process that give gpid
+ps -ejH "$@" | grep "$(pgrep session)"

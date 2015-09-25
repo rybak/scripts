@@ -5,7 +5,7 @@ set -e
 
 source "$HOME/scripts/lib/sound.sh"
 function curr_time {
-    date +%R
+    date +%FT%R
 }
 
 readonly START_TIME="$(curr_time)"
@@ -39,8 +39,8 @@ fail_file="$DIR/${START_TIME}_FAIL"
 succ_file="$DIR/${START_TIME}_SUCCESS"
 stat_file="$DIR/${START_TIME}_STAT"
 
-i=0;
-while true;
+i=0
+while true
 do
     print_time
     let i=i+1

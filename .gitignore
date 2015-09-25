@@ -3,3 +3,8 @@ podcast/*
 later/*
 youtube/*
 commands/*
+special/*
+
+nautabs.sh
+mount.sh
+work-alert.sh

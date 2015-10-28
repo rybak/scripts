@@ -51,10 +51,12 @@ function restart_eth
 
 if [ $# -gt 0 ]; then
     case "$1" in
+    "ping" )
+        ping -c 10 ya.ru
+        ;;
     "restart" )
         down
         sleep 5s
-        reset
         up
         ;;
     "up" )

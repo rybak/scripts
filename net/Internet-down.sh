@@ -3,6 +3,7 @@
 set -u
 set -e
 
+THIS="$0"
 source "$HOME/scripts/lib/sound.sh"
 function curr_time {
     date +%FT%R
@@ -39,13 +40,18 @@ fail_file="$DIR/${START_TIME}_FAIL"
 succ_file="$DIR/${START_TIME}_SUCCESS"
 stat_file="$DIR/${START_TIME}_STAT"
 
+# script `net` should be in same folder
+NET_SCRIPT="${THIS%/*}/net"
+
 i=0
 while true
 do
     print_time
     let i=i+1
     echo "Restarting pppoe"
-    r-net restart | tee "$stat_file"
+    "${NET_SCRIPT}" eth0
+    sleep 1m
+    "${NET_SCRIPT}" restart | tee "$stat_file"
     sleep 10s
     echo "Pinging ya.ru"
     if ping -c 4 ya.ru

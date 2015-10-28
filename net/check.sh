@@ -26,11 +26,9 @@ function mylog
 {
     echo "$(curr_time) : $@" >> "${CHECK_LOG}"
 }
-RED="$(tput setf 4)"
-BOLD="$(tput bold)"
-
-GREEN="$(tput setf 2)"
-RESET_COLOR="$(tput sgr0)"
+RED="\e[0;33m"
+GREEN="\e[0;32m"
+RESET_COLOR="\e[0m"
 long_delay='30m'
 short_delay='3m'
 readonly START_TIME="$(curr_time)"
@@ -42,18 +40,16 @@ do
     if ping -c 10 ya.ru
     then
         mylog "ok"
-        echo $GREEN
-        echo $BOLD
+        echo -e "$GREEN"
         banner OK
-        echo $RESET_COLOR
+        echo -e "$RESET_COLOR"
         mysleep $long_delay
     else
         mylog "fail"
-        echo $RED
-        echo $BOLD
+        echo "$RED"
         banner FAIL
         play_sound_error
-        echo $RESET_COLOR
+        echo "$RESET_COLOR"
         mysleep ${short_delay}
     fi
 done

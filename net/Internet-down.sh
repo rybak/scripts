@@ -63,6 +63,6 @@ do
     fi
     echo "Sleeping. --- Cycle #$i"
     print_time
-    sleep 30s
+    sleep 20m
 done
 

@@ -20,6 +20,7 @@ then
 else
     rfkill unblock wifi
     screen -S "${HOTSPOT_SCREEN_NAME}" sudo ~/scripts/net/initSoftAP wlan0 ppp0
+    print_wifi_state
 fi
 
 

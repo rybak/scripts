@@ -1,4 +1,6 @@
 #!/bin/bash
 
+TAB='%x09'
+
 git log --graph --full-history --all --color \
-        --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
+        --pretty=format:"%C(red)%h${TAB}%C(auto)%d%C(reset)%x20%s"

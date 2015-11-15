@@ -1,15 +1,21 @@
 #!/bin/bash
 
-if [[ $# -gt 0 ]]
-then
-    filename="$1"
-else
-    filename=README.md
-fi
+less_file () {
+    if test $FOUND = false && test -r "$1" # file exists and is readable
+    then
+        FOUND=true
+        less "$1"
+    fi
+}
+FOUND=false
 
-if [[ -r "$filename" ]] # file exists and is readable
+less_file 'README.md'
+less_file 'README'
+less_file 'readme.md'
+less_file 'README.txt'
+less_file 'readme.txt'
+
+if test $FOUND = false
 then
-    less $filename
-else
-    echo "Error: no file '$filename'."
+    echo 'No readme file found'
 fi

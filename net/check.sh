@@ -4,6 +4,7 @@ set -u
 set -e
 
 source "$HOME/scripts/lib/sound.sh"
+source "$HOME/scripts/lib/color.sh"
 function curr_time
 {
     date +%FT%R
@@ -28,7 +29,6 @@ function mylog
 }
 RED="\e[0;33m"
 GREEN="\e[0;32m"
-RESET_COLOR="\e[0m"
 long_delay='30m'
 short_delay='3m'
 if [[ $# -gt 0 ]]
@@ -46,14 +46,14 @@ do
         mylog "ok"
         echo -e "$GREEN"
         banner OK
-        echo -e "$RESET_COLOR"
+        echo -e "$RESET_FONT"
         mysleep $long_delay
     else
         mylog "fail"
         echo "$RED"
         banner FAIL
         play_sound_error
-        echo "$RESET_COLOR"
+        echo "$RESET_FONT"
         mysleep ${short_delay}
     fi
 done

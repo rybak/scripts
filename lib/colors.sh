@@ -8,3 +8,5 @@ BLUE_FG="$(tput setaf 4)"
 MAGENTA_FG="$(tput setaf 5)"
 CYAN_FG="$(tput setaf 6)"
 WHITE_FG="$(tput setaf 7)"
+
+RESET_FONT="\e[0m"

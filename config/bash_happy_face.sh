@@ -25,7 +25,7 @@ function __sad_ps1() {
     fi
     if [[ -f 'README' || -f 'README.md' || -f 'readme.txt' || -f 'readme.md' ]]
     then
-        POST_NOTIFY='\['$HIGHLIGHT_FONT$CYAN_FG'\]'
+        POST_NOTIFY='\['$BLUE_FG'\]📖 \['$RESET_FONT'\]'
         POST_RESET="$PS_RESET_FONT"
     fi
 

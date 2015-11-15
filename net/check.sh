@@ -31,6 +31,10 @@ GREEN="\e[0;32m"
 RESET_COLOR="\e[0m"
 long_delay='30m'
 short_delay='3m'
+if [[ $# -gt 0 ]]
+then
+    long_delay="$1"
+fi
 readonly START_TIME="$(curr_time)"
 while true
 do

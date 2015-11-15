@@ -10,3 +10,7 @@ CYAN_FG="$(tput setaf 6)"
 WHITE_FG="$(tput setaf 7)"
 
 RESET_FONT="\e[0m"
+BRIGHT_FG="\e[1m"
+HIGHLIGHT_FONT="\e[4m"
+
+PS_RESET_FONT='\[\e[0m\]'

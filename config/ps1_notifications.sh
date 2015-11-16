@@ -4,7 +4,7 @@ source "$HOME/scripts/lib/colors.sh"
 
 case "$TERM" in
 xterm*|rxvt* )
-    SMILEY='☹ '
+    SMILEY='☹'
     ;;
 * )
     SMILEY='('

@@ -14,3 +14,7 @@ BRIGHT_FG="\e[1m"
 HIGHLIGHT_FONT="\e[4m"
 
 PS_RESET_FONT='\[\e[0m\]'
+
+function ps1_reset_font() {
+    PS1="$PS1${PS_RESET_FONT}"
+}

@@ -2,9 +2,9 @@
 
 source "$HOME"'/scripts/lib/colors.sh'
 
-DIR="$HOME"'/scripts/config'
+DIR="$HOME/scripts/config"
 __README_SYMBOL='📖'
-README_CONFIG="$DIR"'/readme.conf'
+README_CONFIG="$DIR/readme.conf"
 test -f "$README_CONFIG" && source "$README_CONFIG"
 
 case "$TERM" in

@@ -1,15 +1,8 @@
 #!/bin/bash
 # 2015-09-24
-# Andrey Rybak
-# this is my rendition of /etc/profile.d/git-prompt.sh
-
 # 2015-11-17
-# update for use on VM (Debian 8 with xfce)
 
 source "$HOME/scripts/lib/colors.sh"
-
-#PS1="$PS1"'\n'                 # new line
-# Do not PS1="$PS1"'\[\033[32m\]'      # change to green
 
 ORIG_PS1="$PS1" # store default PS1
 

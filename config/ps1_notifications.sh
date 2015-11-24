@@ -1,9 +1,10 @@
 #!/bin/bash
 
-source "$HOME/scripts/lib/colors.sh"
+source "$HOME"'/scripts/lib/colors.sh'
 
-source './default-readme.conf'
-README_CONFIG='./readme.conf'
+DIR="$HOME"'/scripts/config'
+source "$DIR"'/default-readme.conf'
+README_CONFIG="$DIR"'/readme.conf'
 test -f "$README_CONFIG" && source "$README_CONFIG"
 
 case "$TERM" in

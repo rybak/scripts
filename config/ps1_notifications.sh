@@ -9,10 +9,10 @@ test -f "$README_CONFIG" && source "$README_CONFIG"
 
 case "$TERM" in
 xterm*|rxvt* )
-    SMILEY='☹'
+    __SMILEY='☹'
     ;;
 * )
-    SMILEY='('
+    __SMILEY='('
     ;;
 esac
 
@@ -26,11 +26,11 @@ function __sad_ps1() {
     local POST_RESET=
     if [[ "$EXIT" != '0' ]]
     then
-        SADNESS="$SMILEY"
+        SADNESS="$__SMILEY"
     fi
     if [[ -f 'README' || -f 'README.md' || -f 'readme.txt' || -f 'readme.md' ]]
     then
-        POST_NOTIFY='\['$BLUE_FG'\]'"$README_SYMBOL $PS_RESET_FONT"
+        POST_NOTIFY='\['$BLUE_FG'\]'"$__README_SYMBOL $PS_RESET_FONT"
         POST_RESET="$PS_RESET_FONT"
     fi
 
@@ -38,4 +38,5 @@ function __sad_ps1() {
     __git_ps1 "$PREF" "$GIT_POST"
 }
 
-unset README_SYMBOL
+unset DIR
+unset README_CONFIG

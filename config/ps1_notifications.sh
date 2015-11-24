@@ -3,7 +3,7 @@
 source "$HOME"'/scripts/lib/colors.sh'
 
 DIR="$HOME"'/scripts/config'
-source "$DIR"'/default-readme.conf'
+__README_SYMBOL='📖'
 README_CONFIG="$DIR"'/readme.conf'
 test -f "$README_CONFIG" && source "$README_CONFIG"
 

@@ -8,15 +8,18 @@ set -e
 function usage
 {
     echo -e "
-Usage: net.sh [restart | up | down | eth0]
+Usage: net.sh [COMMAND]
+Commands:
     restart : restart pppoe
     up      : start pppoe
     down : stop pppoe
     eth0 : restart connection to LAN
+	ping
+	lping
 "
 }
 
-PROV='dsl-provider'
+PROV='dsl-provider.campus'
 function up
 {
     pon "${PROV}"
@@ -54,6 +57,9 @@ if [ $# -gt 0 ]; then
     "ping" )
         ping -c 10 ya.ru
         ;;
+	"lping" )
+		ping -c 10 '192.168.0.3'
+		;;
     "restart" )
         down
         sleep 5s

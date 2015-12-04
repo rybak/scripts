@@ -3,7 +3,6 @@
 set -u
 set -e
 
-THIS="$0"
 source "$HOME/scripts/lib/sound.sh"
 function curr_time {
     date +%FT%R
@@ -41,7 +40,8 @@ succ_file="$DIR/${START_TIME}_SUCCESS"
 stat_file="$DIR/${START_TIME}_STAT"
 
 # script `net` should be in same folder
-NET_SCRIPT="${THIS%/*}/net"
+THIS_DIR="$( cd -P "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )"
+NET_SCRIPT="${THIS_DIR}/net"
 
 i=0
 while true

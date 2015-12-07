@@ -16,7 +16,7 @@ PS1_HOST_CONFIG="$DIR/ps1_host.sh"
 test -f "$PS1_HOST_CONFIG" && source "$PS1_HOST_CONFIG"
 PS1="$PS1""$PS1_HOST" # host<space>
 ps1_reset_font
-PS1="$PS1"'\[\033[01;34m\]''\w/' # current working directory<slash>
+PS1="$PS1"'\[\033[01;34m\]''\w' # current working directory
 ps1_reset_font
 
 unset USERNAME_FONT

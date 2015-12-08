@@ -4,7 +4,7 @@ set -u
 set -e
 
 source "$HOME/scripts/lib/sound.sh"
-source "$HOME/scripts/lib/color.sh"
+source "$HOME/scripts/lib/colors.sh"
 function curr_time
 {
     date +%FT%R

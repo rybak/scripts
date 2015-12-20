@@ -50,9 +50,9 @@ do
     let i=i+1
     echo "Restarting pppoe"
     "${NET_SCRIPT}" eth0
-    sleep 1m
+    sleep 20s
     "${NET_SCRIPT}" restart | tee "$stat_file"
-    sleep 10s
+    sleep 20s
     echo "Pinging ya.ru"
     if ping -c 4 ya.ru
     then
@@ -69,6 +69,6 @@ do
     fi
     echo "Sleeping. --- Cycle #$i"
     print_time
-    sleep 20m
+    sleep 10m
 done
 

@@ -13,6 +13,7 @@ fi
 
 for i in "$@" ; do
   name="${i%.*}"
+  EXT="${i#*.}"
   newname="${name// /_}.mp3"
   name="${name}.${EXT}"
   if ${DRY} ; then

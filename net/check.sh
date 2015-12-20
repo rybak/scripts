@@ -27,8 +27,6 @@ function mylog
 {
     echo "$(curr_time) : $@" >> "${CHECK_LOG}"
 }
-RED="\e[0;33m"
-GREEN="\e[0;32m"
 long_delay='30m'
 short_delay='3m'
 if [[ $# -gt 0 ]]
@@ -44,16 +42,16 @@ do
     if ping -c 10 ya.ru
     then
         mylog "ok"
-        echo -e "$GREEN"
+        echo -e "$GREEN_FG"
         banner OK
         echo -e "$RESET_FONT"
         mysleep $long_delay
     else
         mylog "fail"
-        echo "$RED"
+        echo -e "$RED_FG"
         banner FAIL
         play_sound_error
-        echo "$RESET_FONT"
+        echo -e "$RESET_FONT"
         mysleep ${short_delay}
     fi
 done

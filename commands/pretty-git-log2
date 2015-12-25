@@ -1,0 +1,3 @@
+#!/bin/bash
+
+git log --pretty=format:"%C(red)%h %C(green)%ad %C(reset)| %s%C(auto)%d %C(bold blue)[%an]" --graph --date=short --all

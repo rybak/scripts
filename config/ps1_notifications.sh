@@ -4,6 +4,7 @@ source "$HOME/scripts/lib/colors.sh"
 
 DIR="$HOME/scripts/config"
 __README_SYMBOL='📖'
+__README_COLOR="$BLUE_FG"
 README_CONFIG="$DIR/readme.conf"
 test -f "$README_CONFIG" && source "$README_CONFIG"
 
@@ -30,7 +31,7 @@ function __sad_ps1() {
     fi
     if [[ -f 'README' || -f 'README.md' || -f 'readme.txt' || -f 'readme.md' ]]
     then
-        POST_NOTIFY='\['$BLUE_FG'\]'"$__README_SYMBOL $PS_RESET_FONT"
+        POST_NOTIFY='\['$__README_COLOR'\]'"$__README_SYMBOL $PS_RESET_FONT"
         POST_RESET="$PS_RESET_FONT"
     fi
 

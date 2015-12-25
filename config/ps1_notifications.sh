@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$HOME"'/scripts/lib/colors.sh'
+source "$HOME/scripts/lib/colors.sh"
 
 DIR="$HOME/scripts/config"
 __README_SYMBOL='📖'

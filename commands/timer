@@ -14,7 +14,7 @@ function sound_alarm {
     echo "Playing sound alarm!"
     vlc & disown
     #mplayer -msglevel all=-1 -shuffle -volume 75 -playlist "${LIST}"
-    mplayer -volume 75 -loop 0 "$HOME/music/girl-talk.mp3"
+    mplayer -volume 75 -loop 0 "$HOME/music/"*
 }
 
 if [ $# -lt 1 ]; then

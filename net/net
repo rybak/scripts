@@ -20,6 +20,7 @@ Commands:
 }
 
 PROV='dsl-provider.campus'
+#PROV='dsl-provider'
 function up
 {
     pon "${PROV}"

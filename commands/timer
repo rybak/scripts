@@ -12,9 +12,8 @@ function create_list {
 }
 function sound_alarm {
     echo "Playing sound alarm!"
-    vlc & disown
-    #mplayer -msglevel all=-1 -shuffle -volume 75 -playlist "${LIST}"
-    mplayer -volume 75 -loop 0 "$HOME/music/"*
+    mplayer -shuffle -volume 75 -playlist "${LIST}"
+    #mplayer -volume 75 -loop 0 "$HOME/music/"*
 }
 
 if [ $# -lt 1 ]; then
@@ -26,6 +25,7 @@ MUSIC="/media/DATA/MUSIC/"
 LIST="${HOME}/tmp/timer-music-list"
 
 if [[ ! -r "${LIST}" ]]; then
+    echo "No list found. Creating list..."
     create_list
 fi
 
@@ -35,6 +35,7 @@ let DIF=${CUR_DATE}-${LIST_DATE}
 
 WEEK_IN_SECONDS=604800
 if [[ ${DIF} -gt ${WEEK_IN_SECONDS} ]]; then
+    echo "Updating list ..."
     create_list
 fi
 

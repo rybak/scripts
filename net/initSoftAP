@@ -30,6 +30,6 @@ iptables -I FORWARD -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
 sysctl -w net.ipv4.ip_forward=1
  
 #start hostapd
-hostapd /etc/hostapd/hostapd.conf 1> /dev/null
+hostapd /etc/hostapd/hostapd.conf #1> /dev/null
 killall dnsmasq
 

@@ -4,7 +4,9 @@
 echo 'Press <C-a C-d> or <C-a d> to detach from screen session'
 
 #Initial wifi interface configuration
-ifconfig $1 up 10.0.0.1 netmask 255.255.255.0
+# ifconfig $1 up 10.0.0.1 netmask 255.255.255.0
+ip addr add 10.0.0.1/24 dev $1
+ip link set $1 up
 sleep 2
  
 ###########Start dnsmasq, modify if required##########

@@ -19,7 +19,7 @@ then
     print_wifi_state "already "
 else
     rfkill unblock wifi
-    screen -S "${HOTSPOT_SCREEN_NAME}" sudo ~/scripts/net/initSoftAP wlan0 ppp0
+    screen -S "${HOTSPOT_SCREEN_NAME}" sudo ~/scripts/net/initSoftAP wls1 ppp0
     print_wifi_state
 fi
 

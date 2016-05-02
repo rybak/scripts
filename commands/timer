@@ -8,7 +8,7 @@ function usage {
 }
 
 function create_list {
-    find "${MUSIC}" -type f > "${LIST}"
+    find "${MUSIC}" -type f -iname '*.mp3' > "${LIST}"
 }
 function sound_alarm {
     echo "Playing sound alarm!"

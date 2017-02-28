@@ -105,6 +105,7 @@ if [ $# -gt 0 ]; then
     esac
 else
     # TODO add automatic check if pppoe is up
-    up
+    # up
+	usage
 fi
 

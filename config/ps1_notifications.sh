@@ -10,7 +10,7 @@ test -f "$README_CONFIG" && source "$README_CONFIG"
 
 case "$TERM" in
 xterm*|rxvt* )
-    __SMILEY='☹'
+    __SMILEY='☹ '
     ;;
 * )
     __SMILEY='('

@@ -1,0 +1,39 @@
+
+# adding my scripts
+
+IMAGE_MAGICK_PATH='/c/Program Files/ImageMagick-6.9.2-Q16/'
+
+#ANT_HOME="$HOME/temp/apache-ant-1.9.6-bin/apache-ant-1.9.6"
+
+export ANT_HOME
+PATH="${IMAGE_MAGICK_PATH}:$PATH"
+PATH="$HOME/scripts/commands:$PATH"
+PATH="$PATH:/c/cygwin64/bin"
+PATH="$JAVA_HOME/bin:$PATH"
+
+alias l='ls -F'
+alias grep='grep --color=auto'
+
+HISTCONTROL="ignoreboth"
+
+# adding __git_ps1
+export GIT_PS1_SHOWCOLORHINTS="show"
+export GIT_PS1_SHOWDIRTYSTATE="show"
+export GIT_PS1_SHOWSTASHSTATE="show"
+source "$HOME/scripts/config/git_prompt.sh"
+#PROMPT_COMMAND="__git_ps1 '$PS1' '\\\$ '" # only git_ps1 without
+
+# adding :-(
+source "$HOME/scripts/config/bash_happy_face.sh"
+# setting PS1
+source "$HOME/scripts/config/my_ps.sh"
+# setting PROMPT_COMMAND
+PROMPT_COMMAND="__sad_ps1 '$PS1' '└─\\\$ '"
+
+#export GHC_PACKAGE_PATH="$GHC_PACKAGE_PATH;C:/Program Files/Haskell Platform/7.10.2-a\\lib\\package.conf.d;$APPDATA\\ghc\\x86_64-mingw32-7.10.2\\package.conf.d"
+
+
+# For gradle builds of tos-commom
+# Added 2016-12-12
+export GRADLE_OPTS="-Djavax.net.ssl.trustStore=${HOME}/.m2/TDA_CA_Truststore.jks -Djavax.net.ssl.trustStorePassword=changeit"
+#################################

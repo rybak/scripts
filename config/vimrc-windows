@@ -1,0 +1,168 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'git@bitbucket.org:andreyrybak/twitvim.git' " my fork of TwitVim
+" Plugin 'bling/vim-airline'  " status line on steroids
+" Plugin 'tpope/vim-fugitive' " git integration 
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+" // Vundle setup end
+" vim-airline setub
+" let g:airline_powerline_fonts = 1 " doesn't work in git bash
+" exec "AirlineTheme 'simple'"
+" let g:airline_theme='simple'
+" //
+
+" oxij
+" Tab autocompletion
+function InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+
+imap <TAB> <C-r>=InsertTabWrapper()<CR>
+set complete=.,k,b,t,i
+
+"<<<
+set encoding=utf-8
+set nocompatible
+">>>
+
+set ttyfast
+set nomodeline
+
+filetype plugin indent on
+
+"<<<
+" set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType css setlocal shiftwidth=2 tabstop=2
+" associate *.gradle with groovy filetype
+au BufRead,BufNewFile *.gradle setfiletype groovy
+set ruler
+set number
+set undofile " undofile isn't supported by vim 7.2
+" search
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+
+" 80/120 column highlight
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+set colorcolumn=80 " colorcolumn isn't supported by vim 7.2
+autocmd FileType java setlocal colorcolumn=120
+autocmd FileType sh setlocal colorcolumn=120
+highlight ColorColumn ctermbg=Grey
+
+" show white space В¶
+set list
+set listchars=tab:▸\ ,eol:¬
+
+"<<<
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" "inoremap <up> <nop>
+" ""inoremap <down> <nop>
+" "inoremap <left> <nop>
+" "inoremap <right> <nop>
+" "nnoremap j gj
+" "nnoremap k gk
+">>>
+
+" for missing the <ESC>
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+" command mode without shift
+" nnoremap ; :
+" ; is a useful command
+
+set viminfo='20,\"50
+set history=50
+
+set autowrite
+set guioptions=aegirL
+
+syntax on
+set viminfo='20,\"50,:20,%,n~/.viminfo
+
+" /oxij
+
+lang C
+
+" Andrey Rybak 
+" 20140426-1904
+" date paste command
+" :r ! date +\%Y\%m\%d-\%H\%M
+command PD execute ":r ! echo -n `date -I`"
+
+command WU execute ":w ++ff=unix" | execute ":q"
+" 2015-09-21
+" Andrey Rybak
+nmap <F3> :q<CR>
+
+" Andrey Rybak
+" 2015-10-02
+function XDisplayColor(color)
+    let displaycommand = "display -size 300x300 xc:'" . a:color . "'"
+    execute "silent !" . displaycommand . " 2>&1 >/dev/null &"
+    :redraw!
+    return 1
+endfunction
+
+function ShowHexColorUnderCursor()
+    let wordundercursor = expand("<cword>")
+    :call XDisplayColor('\#' . wordundercursor)
+    return 1
+endfunction
+
+" _hi_ghlighting of the Search results
+hi Search cterm=NONE ctermfg=grey ctermbg=blue
+
+" spell checker settings
+:set spellcapcheck=""
+" Spell Check
+let b:myLang=0
+let g:myLangList=["nospell","en_us"]
+function! ToggleSpell()
+  let b:myLang=b:myLang+1
+  if b:myLang>=len(g:myLangList) | let b:myLang=0 | endif
+  if b:myLang==0
+    setlocal nospell
+  else
+    execute "setlocal spell spelllang=".get(g:myLangList, b:myLang)
+  endif
+  echo "spell checking language:" g:myLangList[b:myLang]
+endfunction
+
+nmap <silent> <F7> :call ToggleSpell()<CR>
+" F2 to save files
+imap <F2> <Esc><F2>
+nmap <F2> :w<CR>
+
+hi Comment ctermfg=2
+

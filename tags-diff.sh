@@ -26,4 +26,8 @@ fi
 
 OLD_TAG="$1"
 
-diff <(list_all_tags "$OLD_TAG") <(list_all_tags HEAD)
+TAGS_1=/tmp/tags-diff-1
+TAGS_2=/tmp/tags-diff-2
+list_all_tags "$OLD_TAG" | sort > "$TAGS_1"
+list_all_tags HEAD | sort > "$TAGS_2"
+git diff --no-index "$TAGS_1" "$TAGS_2"

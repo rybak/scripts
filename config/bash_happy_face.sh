@@ -1,11 +1,11 @@
 #!/bin/bash
 
-MOUTH='ᵒᴖᵒ'
+readonly FACES=('(∩︵∩)' 'ᵒᴖᵒ' 'ಠ╭╮ಠ' '(;﹏;)')
+readonly FACE=${FACES[ $RANDOM % ${#FACES[@]} ]}
 
 case "$TERM" in
 xterm*|rxvt* )
-    #SMILEY="${MOUTH}${EYES}"
-    SMILEY="${MOUTH}"
+    SMILEY="${FACE}"
     ;;
 * )
     SMILEY='('

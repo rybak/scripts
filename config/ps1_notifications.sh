@@ -14,6 +14,7 @@ xterm*|rxvt* )
     ;;
 * )
     __SMILEY='('
+	__README_SYMBOL='z'
     ;;
 esac
 

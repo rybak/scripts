@@ -10,10 +10,11 @@ test -f "$README_CONFIG" && source "$README_CONFIG"
 
 case "$TERM" in
 xterm*|rxvt* )
-    __SMILEY='☹'
+    __SMILEY='☹ '
     ;;
 * )
     __SMILEY='('
+	__README_SYMBOL='z'
     ;;
 esac
 
@@ -29,7 +30,7 @@ function __sad_ps1() {
     then
         SADNESS="$__SMILEY"
     fi
-    if [[ -f 'README' || -f 'README.md' || -f 'readme.txt' || -f 'readme.md' ]]
+	if [[ -n $(find -maxdepth 1 -iname '*README*' 2>/dev/null) ]]
     then
         POST_NOTIFY='\['$__README_COLOR'\]'"$__README_SYMBOL $PS_RESET_FONT"
         POST_RESET="$PS_RESET_FONT"

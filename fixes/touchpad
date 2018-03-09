@@ -11,7 +11,7 @@ ECHORES=$DIR/echo.res
 rm -f $DIR/*
 i=0
 date >> "$DIR/start"
-while [ $i -lt 10 ];
+while [ $i -lt 1000 ];
 do
     synclient TapButton2=2 TapButton3=3 > $RETRES 2> $ERRRES
     synclient | grep TapButton > $LISTRES

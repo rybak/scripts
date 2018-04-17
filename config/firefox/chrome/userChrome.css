@@ -1,0 +1,61 @@
+/* Do not remove the @namespace line -- it's required for correct functioning */
+/* set default namespace to XUL */
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Removing green plus sign from the new tab button */
+.tabs-newtab-button, #TabsToolbar #new-tab-button {
+  list-style-image: url("moz-icon://stock/gtk-add?size=menu");
+  list-style-image: none !important;
+  -moz-image-region: auto;
+}
+
+/* changing background of an unloaded page (to remove white flashes) */
+browser {
+  background: #1B1B1B;
+}
+
+/* changing full screen message size */
+#full-screen-warning-container[obscure-browser] {
+  /* background-color:transparent !important; */
+  background-color : magenta !important;
+}
+#full-screen-warning-message {
+  padding: 15px !important;
+}
+.full-screen-description {
+  font-size: 100% !important;
+}
+#full-screen-domain-text {
+  font-size: 100% !important;
+  font-weight:bold !important;
+}
+.full-screen-approval-button, #full-screen-remember-decision {
+  font-size: 100% !important;
+}
+
+
+/* Firefox 57 update compact density
+ * 2017-12-03 */
+#tabbrowser-tabs, #tabbrowser-tabs > .tabbrowser-arrowscrollbox, .tabbrowser-tabs[positionpinnedtabs] > .tabbrowser-tab[pinned] {
+	min-height: 25px !important;
+}
+
+#TabsToolbar {
+	padding-left: 12px !important;
+}
+tab {
+	--tab-line-color: none;
+}
+toolbar#nav-bar {
+	padding: 0 !important;
+}
+
+body.activity-stream {
+	background: black;
+}
+button#onboarding-overlay-button {
+	opacity: 0.1;
+}
+section.top-sites div.title {
+	color: #DDD;
+}

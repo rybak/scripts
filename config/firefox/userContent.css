@@ -1,0 +1,16 @@
+#urlbar-container { height: 20px !important; }
+@namespace url(http://www.w3.org/1999/xhtml);
+@-moz-document url("about:blank") {
+    /*background: url('[INSERT IMAGE URL HERE]');*/
+    background-color: #606060 !important;
+    background-position:center center;
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+}
+
+#errorPageContainer {
+  background-color: magenta !important;
+  font-family : Georgia !important;
+}
+
+

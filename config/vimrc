@@ -1,0 +1,156 @@
+set nocompatible             " be iMproved, required
+filetype plugin indent on    " required
+
+" oxij
+" Tab autocompletion
+function InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+
+imap <TAB> <C-r>=InsertTabWrapper()<CR>
+set complete=.,k,b,t,i
+
+"<<<
+set encoding=utf-8
+set nocompatible
+">>>
+
+set ttyfast
+set nomodeline
+
+filetype plugin indent on
+
+"<<<
+" set expandtab
+set tabstop=8
+set shiftwidth=8
+set softtabstop=8
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType css setlocal shiftwidth=2 tabstop=2
+
+autocmd FileType hs setlocal shiftwidth=4 tabstop=4
+autocmd FileType hs setlocal expandtab
+
+" Good settings for C editing
+autocmd FileType c,cpp :set cindent
+autocmd FileType c,cpp setlocal shiftwidth=8 tabstop=8 softtabstop=8
+" associate *.gradle with groovy filetype
+au BufRead,BufNewFile *.gradle setfiletype groovy
+
+set ruler
+set number
+set undofile " undofile isn't supported by vim 7.2
+" search -- turn on magic \v by default
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+
+" 80/120 column highlight
+set wrap
+set textwidth=80
+" set formatoptions=qrn1
+set colorcolumn=81 " colorcolumn isn't supported by vim 7.2
+autocmd FileType java setlocal colorcolumn=121
+autocmd FileType sh setlocal colorcolumn=81
+highlight ColorColumn ctermbg=Red
+
+" show white space В¶
+set list
+set listchars=tab:▸\ ,eol:¬
+
+"<<<
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" "inoremap <up> <nop>
+" ""inoremap <down> <nop>
+" "inoremap <left> <nop>
+" "inoremap <right> <nop>
+" "nnoremap j gj
+" "nnoremap k gk
+">>>
+
+" for missing the <ESC>, nobody uses F1 anyway
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+" command mode without shift
+" nnoremap ; :
+" ; is a useful command
+
+set viminfo='20,\"50
+set history=50
+
+set autowrite
+set guioptions=aegirL
+
+syntax on
+set viminfo='20,\"50,:20,%,n~/.viminfo
+
+lang C
+
+" Andrey Rybak 
+" 20140426-1904
+" date paste command
+" :r ! date +\%Y\%m\%d-\%H\%M
+command PD execute ":r ! echo -n `date -I`" | execute ":normal kJ"
+
+command WU execute ":w ++ff=unix" | execute ":q"
+" 2015-09-21
+" Andrey Rybak -- for usage inside FAR
+" nmap <F3> :q<CR>
+
+" Andrey Rybak 2015-10-02
+" Andrei Rybak 2018-08-03: XXX this does not work on windows
+function XDisplayColor(color)
+    let displaycommand = "display -size 300x300 xc:'" . a:color . "'"
+    execute "silent !" . displaycommand . " 2>&1 >/dev/null &"
+    :redraw!
+    return 1
+endfunction
+
+function ShowHexColorUnderCursor()
+    let wordundercursor = expand("<cword>")
+    :call XDisplayColor('\#' . wordundercursor)
+    return 1
+endfunction
+
+" _hi_ghlighting of the Search results
+hi Search cterm=NONE ctermfg=grey ctermbg=blue
+
+" spell checker settings
+:set spellcapcheck=""
+" Spell Check
+let b:myLang=0
+let g:myLangList=["nospell","en_us"]
+function! ToggleSpell()
+  let b:myLang=b:myLang+1
+  if b:myLang>=len(g:myLangList) | let b:myLang=0 | endif
+  if b:myLang==0
+    setlocal nospell
+  else
+    execute "setlocal spell spelllang=".get(g:myLangList, b:myLang)
+  endif
+  echo "spell checking language:" g:myLangList[b:myLang]
+endfunction
+
+" shortcuts to turn spell check on and off
+nmap <silent> <F7> :call ToggleSpell()<CR>
+" F2 to save files
+imap <F2> <Esc><F2>
+nmap <F2> :w<CR>
+
+hi Comment ctermfg=2
+

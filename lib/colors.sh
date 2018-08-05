@@ -20,6 +20,7 @@ WHITE="$WHITE_FG"
 
 RESET_FONT="\e[0m"
 BRIGHT_FG="\e[1m"
+DIM_FG="\e[2m"
 HIGHLIGHT_FONT="\e[4m"
 
 PS_RESET_FONT='\[\e[0m\]'

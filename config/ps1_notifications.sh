@@ -3,8 +3,8 @@
 source "$HOME/scripts/lib/colors.sh"
 
 DIR="$HOME/scripts/config"
-__README_SYMBOL='📖'
-__README_COLOR="$BLUE_FG"
+__README_SYMBOL='☡'
+__README_COLOR="$BRIGHT_FG$MAGENTA_FG"
 README_CONFIG="$DIR/readme.conf"
 test -f "$README_CONFIG" && source "$README_CONFIG"
 

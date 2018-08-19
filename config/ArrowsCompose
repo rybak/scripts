@@ -1,0 +1,19 @@
+# For inclusion in ~/.XCompose
+#
+# The default (for en_US) is at /usr/share/X11/locale/en_US.UTF-8/Compose
+#
+
+<Multi_key> <minus> <v> : "↓"  U2193  # DOWNWARD ARROW
+<Multi_key> <minus> <6> : "↑"  U2191  # UPWARD ARROW (helper without SHIFT key)
+
+# 2018-09-09+2019-03-16
+# the default XCompose only has ⇒
+# clashes with ≤, which is Multi_key less equal
+# DISABLED # <Multi_key> <less> <equal> 	: "⇐" U21D0 # LEFTWARDS DOUBLE ARROW
+# use long versions instead
+<Multi_key> <equal> <equal> <less> : "⟸"       U27F8 # LONG LEFTWARDS DOUBLE ARROW
+<Multi_key> <equal> <equal> <greater> : "⟹"   U27F9 # LONG RIGHTWARDS DOUBLE ARROW
+
+# if and only if <==>
+<Multi_key> <i> <f> <f> : "⟺"    U27FA # LONG LEFT RIGHT DOUBLE ARROW
+

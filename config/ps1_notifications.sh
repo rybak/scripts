@@ -15,7 +15,7 @@ PS1="$PS1\[$WHITE\]"'@'  # @
 PS1="$PS1\[$HOSTNAME_FONT\]"'\h' # host
 ps1_reset_font
 
-PS1="${PS1}\[\033[01;34m\]" # change to directory color
+PS1="${PS1}$NORMAL:\[\033[01;34m\]" # change to directory color
 PS1="$PS1"'\w'                # current working directory
 ps1_reset_font
 

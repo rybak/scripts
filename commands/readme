@@ -1,5 +1,9 @@
 #!/bin/sh
 
+#
+# Helper script to read readme files.
+#
+
 less_file () {
     if ! $FOUND && test -r "$1" # file exists and is readable
     then

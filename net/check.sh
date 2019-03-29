@@ -43,13 +43,13 @@ do
     then
         mylog "ok"
         echo -e "$GREEN_FG"
-        banner OK
+        banner OK || echo "OK"
         echo -e "$RESET_FONT"
         mysleep $long_delay
     else
         mylog "fail"
         echo -e "$RED_FG"
-        banner FAIL
+        banner FAIL || echo "FAIL"
         play_sound_error
         echo -e "$RESET_FONT"
         mysleep ${short_delay}

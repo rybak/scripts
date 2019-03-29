@@ -8,7 +8,7 @@ function usage {
 }
 
 function create_list {
-    find "${MUSIC}" -type f -iname '*.mp3' > "${LIST}"
+    find "${MUSIC}" -type f -iname '*.mp3' -o -iname '*.wav' > "${LIST}"
 }
 function sound_alarm {
     echo "Playing sound alarm!"
@@ -22,9 +22,12 @@ if [ $# -lt 1 ]; then
 fi
 
 MUSIC="/media/DATA/MUSIC/"
+MUSIC=/usr/share/games/supertux2/sounds
+
 LIST="${HOME}/tmp/timer-music-list"
 
-if [[ ! -r "${LIST}" ]]; then
+if [[ ! -r "${LIST}" ]] || [ ! -s "${LIST}" ]
+then
     echo "No list found. Creating list..."
     create_list
 fi

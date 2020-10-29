@@ -1,0 +1,25 @@
+#!/bin/bash
+
+connect () {
+	bluetoothctl connect 38:18:4C:BE:49:FC
+}
+
+disconnect () {
+	bluetoothctl disconnect 38:18:4C:BE:49:FC
+}
+
+if [[ "$1" = 'connect' ]]
+then
+	connect
+	exit 0
+fi
+
+if [[ "$1" = 'disconnect' ]]
+then
+	disconnect
+	exit 0
+fi
+
+disconnect
+sleep 5s
+connect

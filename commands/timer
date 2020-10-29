@@ -12,7 +12,7 @@ function create_list {
 }
 function sound_alarm {
     echo "Playing sound alarm!"
-    mplayer -shuffle -volume 75 -playlist "${LIST}"
+    mplayer -loop 0 -shuffle -volume 75 -playlist "${LIST}"
     #mplayer -volume 75 -loop 0 "$HOME/music/"*
 }
 
@@ -23,6 +23,7 @@ fi
 
 MUSIC="/media/DATA/MUSIC/"
 MUSIC=/usr/share/games/supertux2/sounds
+MUSIC="${HOME}/Videos"
 
 LIST="${HOME}/tmp/timer-music-list"
 

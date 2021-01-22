@@ -8,7 +8,7 @@ function usage {
 }
 
 function create_list {
-    find "${MUSIC}" -type f -iname '*.mp3' -o -iname '*.wav' > "${LIST}"
+    find "${MUSIC}" -type f -iname '*.mp3' -o -iname '*.wav' -o -iname '*.ogg' > "${LIST}"
 }
 function sound_alarm {
     echo "Playing sound alarm!"
@@ -24,6 +24,7 @@ fi
 MUSIC="/media/DATA/MUSIC/"
 MUSIC=/usr/share/games/supertux2/sounds
 MUSIC="${HOME}/Videos"
+MUSIC=/usr/share/sounds/
 
 LIST="${HOME}/tmp/timer-music-list"
 
@@ -34,6 +35,10 @@ then
 fi
 
 LIST_DATE="$(stat --format="%Y" ${LIST})"
+if [[ -z "$LIST_DATE" ]]
+then
+	LIST_DATE=0
+fi
 CUR_DATE="$(date +"%s")"
 let DIF=${CUR_DATE}-${LIST_DATE}
 

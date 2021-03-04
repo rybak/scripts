@@ -1,10 +1,14 @@
 #!/bin/bash
 
+FLAG_FILE=/tmp/bluetooth-disable
+
 connect () {
+	rm -f "$FLAG_FILE"
 	bluetoothctl connect 38:18:4C:BE:49:FC
 }
 
 disconnect () {
+	touch "$FLAG_FILE"
 	bluetoothctl disconnect 38:18:4C:BE:49:FC
 }
 

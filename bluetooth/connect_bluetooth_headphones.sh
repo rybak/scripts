@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+FLAG_FILE=/tmp/bluetooth-disable
 # Adapted from a copy-pasted script.
 
 ADDR=38:18:4C:BE:49:FC
@@ -26,6 +27,7 @@ function disconnect_bluetooth_headphones() {
 }
 
 function connect_bluetooth_headphones() {
+  rm -f "$FLAG_FILE"
   _control_bluetooth_headphones "connect"
 }
 

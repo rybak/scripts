@@ -27,7 +27,6 @@ function disconnect_bluetooth_headphones() {
 }
 
 function connect_bluetooth_headphones() {
-  rm -f "$FLAG_FILE"
   _control_bluetooth_headphones "connect"
 }
 
@@ -47,12 +46,13 @@ function set_headphones_profile_off() {
 }
 
 function main() {
+  rm -f "$FLAG_FILE"
   set_headphones_profile_off
-  sleep 2s
+  sleep 1s
   disconnect_bluetooth_headphones
-  sleep 6s
+  sleep 4s
   connect_bluetooth_headphones
-  sleep 3s
+  sleep 2s
   set_headphones_profile_a2dp_sink
 }
 

@@ -23,9 +23,9 @@ do
 	output=$( hcitool rssi $BADDR 2>&1 )
 	if [[ -e "$FLAG_FILE" ]]
 	then
-		SLEEP_DURATION=10s
+		SLEEP_DURATION=20s
 	else
-		SLEEP_DURATION=1s
+		SLEEP_DURATION=5s
 		if [[ $? -ne 0 ]]
 		then
 			reconnect

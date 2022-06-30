@@ -11,7 +11,7 @@ function my_notify {
 
 CONFIG="$HOME/.config/youtube/youtuberc"
 CURDIR=$(pwd -P) # $(pwd --physical) — bash BUILTIN command `pwd` does not support long options
-TITLE="youtube-dl"
+TITLE="yt-dlp"
 DIR=$(dirname "$0")
 ICON="$DIR/youtube-logo.png"
 
@@ -35,7 +35,7 @@ function print_time {
 
 print_time 'started'
 echo "Downloading to the folder '$PWD'"
-if ! youtube-dl --restrict-filenames \
+if ! yt-dlp --restrict-filenames \
     --continue --ignore-errors --no-overwrites \
     --output '%(uploader_id)s/%(upload_date)s_%(title)s.%(ext)s' \
     "$@"

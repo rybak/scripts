@@ -1,3 +1,6 @@
 #!/bin/bash
 
+# This scripts finds which _first_ letters of filenames are not used by any
+# file in the current directory.
+
 diff <(ls -1 | grep ^[a-z] -o | uniq) <(for i in {a..z}; do echo $i; done) | grep  '>'  | grep -o [a-z]

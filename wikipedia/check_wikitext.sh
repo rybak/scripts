@@ -11,9 +11,21 @@ then
 	exit 1
 fi
 
-category="${1// /_}"
+category="Category:${1// /_}"
 
-curl --silent "https://$BASE_HOST/w/api.php?action=query&generator=categorymembers&gcmtitle=Category:${category}&cllimit=max&gcmlimit=max&format=json" |
+echo "Checking '$category'..."
+
+url=$(trurl \
+	--set host=$BASE_HOST --set scheme=https --set path=/w/api.php \
+	--append query=action=query --append query=generator=categorymembers \
+	--append query=cllimit=max --append query=gcmlimit=max \
+	--append query=format=json \
+	--append "query=gcmtitle=${category}" \
+	)
+
+echo "Downloading URL='$url'..."
+
+curl "$url" |
 	jq --raw-output '.query.pages | map(.title)[]' |
 	grep '^Template:' |
 while read i

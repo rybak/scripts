@@ -1,4 +1,3 @@
 #!/bin/sh
 
-killall plasmashell
-kstart5 plasmashell
+kbuildsycoca5 && kquitapp5 plasmashell && kstart5 plasmashell

@@ -7,12 +7,12 @@ BASE_HOST=en.wikipedia.org
 
 if [[ $# -lt 1 ]]
 then
-	echo "Missing category name"
+	echo "Missing category name. E.g. 'Navigational boxes'"
 	exit 1
 fi
 if [[ $# -lt 2 ]]
 then
-	echo "Missing expected template"
+	echo "Missing expected template regex. E.g. '[nN]avbox'"
 	exit 1
 fi
 

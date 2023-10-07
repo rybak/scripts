@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Deprecated.
+# No longer used after a workaround for Bluetooth issues was found.
+# Details in https://superuser.com/a/1646542/133421
+
 FLAG_FILE=/tmp/bluetooth-disable
 # Adapted from a copy-pasted script.
 
@@ -40,6 +44,17 @@ function set_headphones_profile_a2dp_sink() {
   echo "bluetooth headphones a2dp_sink"
 }
 
+function set_headphones_profile_headset() {
+  _set_headphones_profile "off"
+  sleep 1s
+  disconnect_bluetooth_headphones
+  sleep 3s
+  connect_bluetooth_headphones
+  sleep 1s
+  _set_headphones_profile "headset_head_unit"
+  echo "bluetooth headphones headset_head_unit"
+}
+
 function set_headphones_profile_off() {
   _set_headphones_profile "off"
   echo "bluetooth headphones profile off"
@@ -48,11 +63,11 @@ function set_headphones_profile_off() {
 function main() {
   rm -f "$FLAG_FILE"
   set_headphones_profile_off
-  sleep 1s
+  sleep 5s
   disconnect_bluetooth_headphones
-  sleep 4s
+  sleep 5s
   connect_bluetooth_headphones
-  sleep 2s
+  sleep 5s
   set_headphones_profile_a2dp_sink
 }
 

@@ -19,7 +19,7 @@ PS1="${PS1}$NORMAL:\[\033[01;34m\]" # change to directory color
 PS1="$PS1"'\w'                # current working directory
 ps1_reset_font
 
-__README_COLOR="$DIM_FG$MAGENTA_FG"
+__README_COLOR="$MAGENTA_FG"
 
 # TODO double check the function of README_CONFIG
 README_CONFIG="$HOME/scripts/config/readme.conf"

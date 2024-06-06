@@ -9,24 +9,9 @@ function my_notify {
     notify-send --icon "$ICON" --urgency $1 "$TITLE" "$2"
 }
 
-CONFIG="$HOME/.config/youtube/youtuberc"
-CURDIR=$(pwd -P) # $(pwd --physical) — bash BUILTIN command `pwd` does not support long options
 TITLE="yt-dlp"
 DIR=$(dirname "$0")
 ICON="$DIR/youtube-logo.png"
-
-if [[ -r "$CONFIG" ]]
-then
-    source "$CONFIG"
-else
-    echo "Error: No config at '$CONFIG'. Closing."
-    exit 1
-fi
-
-if ! grep --fixed-strings --line-regexp --quiet "$CURDIR" "$DIRS_LIST"
-then
-    cd -P "$DEFAULT"
-fi
 
 function print_time {
     echo -n "Time $1 : "

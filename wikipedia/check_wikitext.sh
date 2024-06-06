@@ -3,6 +3,8 @@
 # For every English Wikipedia page in category `$1`, prints a bunch of wikitext
 # from the start and from the end of the page.
 
+source "$HOME/scripts/lib/colors.sh"
+
 BASE_HOST=en.wikipedia.org
 
 if [[ $# -lt 1 ]]
@@ -52,7 +54,7 @@ do
 		echo "${i}"
 		echo -e "\t${wikitext_start}"
 		echo -e "\t${wikitext: -20}"
-		echo "-------------------------"
+		echo -e "${CYAN_FG}----------------------------${RESET_FONT}"
 	fi
 	sleep 1s
 done

@@ -52,16 +52,17 @@ for line in stdin:
     usernames.append(line.rstrip())
 
 edit_counts = {}
+registrations = {}
 
 for batch in chunks(usernames, LIST_USERS_LIMIT):
-    # Example: https://en.wikipedia.org/w/api.php?action=query&list=users&ususers=ZARDIAZ|Zarina%206022|Zatrp&usprop=editcount&format=json
+    # Example: https://en.wikipedia.org/w/api.php?action=query&list=users&ususers=Example|ZARDIAZ|Zarina%206022|Zatrp&usprop=editcount|registration&format=json
     ususers = batch_to_ususers(batch)
     print(ususers)
     params = {
             'action':'query',
             'list':'users',
             'format':'json',
-            'usprop':'editcount',
+            'usprop':'editcount|registration',
             'ususers': ususers
             }
     try:
@@ -72,6 +73,9 @@ for batch in chunks(usernames, LIST_USERS_LIMIT):
                 edit_counts[user['name']] = user['editcount']
             else:
                 print('beware', user['name'])
+            if 'registration' in user and user['registration'] is not None:
+                # save only the year of the registration timestamp
+                registrations[user['name']] = user['registration'][:4]
         time.sleep(2)
     except Exception as e:
         print('Unexpected exception', e)
@@ -97,4 +101,5 @@ for username in usernames:
 simple_write_strings('/tmp/zeros.txt', zeros)
 simple_write_strings('/tmp/nonzeros.txt', nonzeros)
 simple_write_strings('/tmp/weird.txt', weird)
-simple_write_strings('/tmp/edit_counts.csv', [username + ',' + str(ec) for username, ec in edit_counts.items()])
+csv_strings = [','.join([username, str(ec), str(registrations.get(username))]) for username, ec in edit_counts.items()]
+simple_write_strings('/tmp/Username_EditCount_RegistrationYear.csv', csv_strings)
